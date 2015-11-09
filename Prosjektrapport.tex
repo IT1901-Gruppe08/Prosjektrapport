@@ -7,7 +7,11 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 
-\usepackage{textcomp}
+\usepackage{pdfpages} %For å legge til vedlegg som pdf-filer
+
+\usepackage{nicefrac}
+
+\usepackage{attachfile}
 
 \hypersetup{
     colorlinks,
@@ -46,6 +50,7 @@
 %	\end{figure}
 %Så må du huske å referere til figuren i teksten. Eks:
 %	Figur \ref{fig:task-board} viser...
+
 
 Dette prosjektet er et gruppeprosjekt gitt i emnet IT1901 - Informatikk prosjektarbeid 1, ved NTNU, høst 2015. Målet med prosjektet og emnet er å gi deltagerne et innblikk hvordan det er å jobbe i større gruppeprosjekter og arbeidsmetoder hvor en tredjepart er med i prosessen. I dette prosjektets tilfelle er tredjeparten en kunde, som skal ta i bruk programmet. Prosjektet skal lære hvordan gruppeprosjekter gjennomføres og gi erfaringer rundt programmeringsverktøy, arbeidsmodeller og den smidige arbeidsmetoden Scrum.
 
@@ -209,12 +214,10 @@ Siden rammeverket er bygget lagvis på denne måten vil ikke databasen og templa
 	\subsubsection{Brukerhistorier}
 	Produkteier rangerte brukerhistoriene og ga de lav, høy eller vanlig proritet. Deretter måtte vi rangere disse historiene igjen, for å finne hvilke vi skulle implementere først av de med høyest prioritet. Noen historier så ut til å være avhengige av at andre var ferdige, og måtte nødvendigvis havne i tilsvarende rekkefølge. På grunn av estimater på noen historier måtte vi også gjøre en brukerhistorie med lavere prioritet før en med høyere prioritet. Vi så at i løpet av Sprint 1 hadde vi plass til en brukerhistorie med lavt estimat til, så vi overførte en brukerhistorie fra Sprint 2 til Sprint 1, men denne brukerhistorien hadde lavere prioritet, men var den eneste vi hadde tid til å flytte over til gjeldende sprint. 
 
-    Når vi skulle estimere hvor mange arbeidsøkter en brukerhistorie kom til å ta, brukte vi planning poker. Planning poker utføres ved at hver gruppemedlem får en kortstokk med 13 kort, med verdier som 0, \textonehalf, 1, 2, 3, 5, 8, 13, 20, 40, 100, ?, “Pause”. Så velges en brukerhistorie og alle skal individuelt velge ett av kortene som representerer estimert tid for å løse brukerhistorien. Har man bestemt seg for et kort skal den legges på bordet slik at estimatet er skjult. Når alle har et kort liggende foran seg er det på tide å snu dem. Dersom det oppsto store avvik i estimert tid skal man diskutere hvorfor estimatene blir så forskjellige. Deretter skal brukerhistorien estimeres igjen for å se om gruppen blir mer enige om estimatene.
+    Når vi skulle estimere hvor mange arbeidsøkter en brukerhistorie kom til å ta, brukte vi planning poker. Planning poker utføres ved at hver gruppemedlem får en kortstokk med 13 kort, med verdier som 0, \nicefrac{1}{2}, 1, 2, 3, 5, 8, 13, 20, 40, 100, ?, “Pause”. Så velges en brukerhistorie og alle skal individuelt velge ett av kortene som representerer estimert tid for å løse brukerhistorien. Har man bestemt seg for et kort skal den legges på bordet slik at estimatet er skjult. Når alle har et kort liggende foran seg er det på tide å snu dem. Dersom det oppsto store avvik i estimert tid skal man diskutere hvorfor estimatene blir så forskjellige. Deretter skal brukerhistorien estimeres igjen for å se om gruppen blir mer enige om estimatene.
 
     Det viste seg å være nyttig. Vi fikk da avdekket at det var forskjellige oppfatninger i gruppen av hva slags tekniske implikasjoner historien innebar. Når en historie ga vidt forskjellige verdier, så kunne de som mente at historien trengte få økter få si hvorfor de mente den ikke trengte så mange og motsatt med de som mente historien trengte mange. Allerede da kom det opp mange gode forslag på hvordan man kan løse ting. Noen i gruppen visste allerede litt om hva slags muligheter vårt valgte rammeverk ga, og hadde allerede ideer på hvordan spesifikke ting kunne løses. Når vi tok en ny runde planning poker på den samme brukerhistorien fikk vi likere resultat og kunne fastsette antall økter på en brukerhistorie. 
 
-	
-	
 	
 	\subsubsection{Vårt Task-board}
 	\subsubsection{Våre Retrospektiver}
@@ -360,15 +363,17 @@ Brenndiagrammet viser hvordan progresjonen for oppgavene var i denne sprinten (s
 	Tidlig i prosjektet bestemte gruppen seg for at det var en god ide å skrive en risikoanalyse for hvilke faktorer som kunne hindre fremgangen i gruppen. Alle risikofaktorene er tilgjengelig i tabellform under vedlegg “risikoanalyse”. En viktig fordel for gruppen var at den bestod av mange gruppemedlemmer, så dermed kunne gruppen ta ansvar for å sette seg inn i og utføre arbeidsoppgaver ved fravær. Dette utspilte seg positivt, da flere fikk satt seg inn i andre deler av prosjektet.
 	
 	\section{Produkt}
-	Før vi bestemte oss for hvilken løsning vi skulle velge for produktet, gikk vi over brukerhistoriene vi hadde fått for å vurdere hva som ville passe best for kunden. Etter å ha vurdert både desktop-program i JavaFX og en mobilapp, valgte vi å gå for en nettside. Hovedgrunnen er at en nettside er lett tilgjengelig på både mobil og datamaskin.
+	Før vi bestemte oss for hvilken løsning vi skulle velge for produktet, gikk vi over brukerhistoriene vi hadde fått for å vurdere hva som ville passe best for kunden. Etter å ha vurdert både desktop-program i JavaFX og en mobilapp, valgte vi å gå for en nettside. Hovedgrunnen er at en nettside er lett tilgjengelig på både mobil og datamaskin og krever ingen installering for brukeren sin del.
 	
-	I vår implementasjon foregår kommunikasjon mellom administrasjonen og koiebrukerne via epost.
+	I vår implementasjon rapporterer brukere status på koiene ved å fylle ut forskjellige skjema og sende de inn. Dette innebærer vedstatus, vedlikeholdsbehov, forslag til tekniske utbedringer og reparasjoner for hver eneste koie. 
+	
+	Medlemmer av Koiestyret har mulighet til å logge seg inn på en adminside som har oversikt alle rapportene. 
+	
+	foregår kommunikasjon mellom administrasjonen og koiebrukerne via epost.
 
     NTNUI administrasjonen får en bedre oversikt over koiene og
     
-    Brukere rapporterer status på koiene ved å fylle ut forskjellige skjema og sende de inn. Dette innebærer vedstatus, vedlikeholdsbehov, forslag til tekniske utbedringer og reparasjoner for hver eneste koie.
-    
-    Administrasjonen tar utgangspunkt i en adminside som tar imot rapportene for å organisere reparasjoner, tekniske utbedringer, vedlikehold og planlegge veddugnader basert på vedprognose.
+    om reparasjoner, tekniske utbedringer, vedlikehold og veddugnad basert på vedprognose.
     
 	
 	//Referer til brukermanual
@@ -378,7 +383,7 @@ Brenndiagrammet viser hvordan progresjonen for oppgavene var i denne sprinten (s
 	Testing
 
 Generell Testing
-Unit testene til Django bruker en python modul kalt unittest. Denne modulen kjører tester ved å skrive egne klasser for å teste koden. Når manage.py startapp lager en ny applikasjon i django, blir det laget en python fil kalt tests.py i applikasjons mappen. Denne python filen blir brukt til å skrive testklassene. Django kjører også nettsiden i debug mode. Dette velges ved å sette debug = True i settings.py filen. Debug mode tilbyr en detaljert visning av feilmeldingene som måtte oppstå når nettsiden kjøres. Dette ble selvsagt benyttet, nettopp fordi koden måtte fungere for å få sett nettsiden. Gruppen valgte å ikke bruke unit tester i python, og fokuserte heller på å teste brukerhistoriene selv, og ved brukbarhetstester for kunden.
+Unit testene til Django bruker en Python modul kalt unittest. Denne modulen kjører tester ved å skrive egne klasser for å teste koden. Når manage.py startapp lager en ny applikasjon i django, blir det laget en python fil kalt tests.py i applikasjons mappen. Denne python filen blir brukt til å skrive testklassene. Django kjører også nettsiden i debug mode. Dette velges ved å sette debug = True i settings.py filen. Debug mode tilbyr en detaljert visning av feilmeldingene som måtte oppstå når nettsiden kjøres. Dette ble selvsagt benyttet, nettopp fordi koden måtte fungere for å få sett nettsiden. Gruppen valgte å ikke bruke unit tester i python, og fokuserte heller på å teste brukerhistoriene selv, og ved brukbarhetstester for kunden.
 
 Det ble skrevet et testdesign dokument der hver brukerhistorie ble testet, se vedlegg “brukerhistorie - testdesign”. Vedlegget består av hvordan gruppen gjennomførte testene, og hvilke tilbakemeldinger en forventet for hver test.
 
@@ -396,6 +401,22 @@ Ved å teste målene gruppen oppnådde for kunden, fikk vi sett hvordan produkte
 \bibliographystyle{agsm}
 \bibliography{referanser}
 \section{Vedlegg}
-\include{vedlegg/test_plan}
-\end{document}
+\tableofcontents{vedlegg}
+%To be clear, you need to specify the pages you wish to include, i.e. \includepdf[pages={1,3,5}]{myfile.pdf} would include pages 1, 3, and 5 of the file. To include the entire file, you specify pages={-}, where {-} is a range without the endpoints specified which default to the first and last pages, respectively.
 
+\addcontentsline{vedlegg}{section}{Testplan}
+%\include{vedlegg/test_plan} %Flott om denne blir kompilert til ett pdf-dokument. Da blir TOC finere... altså:
+%\includepdf[pages={-}]{vedlegg/testplan/testplan}
+
+\addcontentsline{vedlegg}{subsection}{Brukermanual}
+\includepdf[pages={-}]{vedlegg/brukermanual/brukermanual}
+\addcontentsline{toc}{subsection}{Retrospektiv}
+\addcontentsline{toc}{subsubsection}{Sprint 1}
+\includepdf[pages={-}]{vedlegg/Retrospektiv/Sprint1}
+%\addcontentsline{toc}{subsubsection}{Sprint 2}
+%\includepdf[pages={-}]{vedlegg/Retrospektiv/Sprint2}
+%\addcontentsline{toc}{subsubsection}{Sprint 3}
+%\includepdf[pages={-}]{vedlegg/Retrospektiv/Sprint3}
+%\addcontentsline{toc}{subsubsection}{Sprint 4}
+%\includepdf[pages={-}]{vedlegg/Retrospektiv/Sprint4}
+\end{document}
