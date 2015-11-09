@@ -84,8 +84,20 @@ Tidlig bestemte gruppen seg for at alle skulle jobbe med forskjellige arbeidsopp
 	Utviklingsfasen deles opp i sykler, og blir i Scrum kalt sprinter. I begynnelsen av hver sykel har man i Scrum et sprintplanleggingsmøte. Deltakerne på møtet er ikke bare medlemmer av utviklingsteamet med Scrum-master, men også produkteier. Formålet med møtet er å forberede og justere produkt-backlogen og planlegge neste sprint.
 
     Scrum-teamet avgjør hvor lang sprinten skal være og finner ut hvilke ressurser man har på denne sprinten. Gruppen avtaler tidspunkt for når på dagen gruppen skal ha det daglige Scrum-møtet, når retrospektiv-møtet for sprinten skal være og når demonstrasjonen for produktet skal være \cite[side 16]{kniberg}.
-	\subsubsection{Release-plan}\label{releaseplan}
+	\subsubsection{Release-plan}
+	I noen prosjekter kan det være hensiktsmessig å planlegge lengre frem i tid enn kun for den neste sprinten. Man lager en releaseplan for hele prosjektet. Hensikten med denne er å gjøre det samme som i sprintplanleggingsmøtet, men for alle brukerhistorier. Etter at en sprint er ferdig har man et sprintplanleggingsmøte der man justerer release-planen utifra eventuelle endringer og hvordan sprinten faktisk gikk \cite[side 95 - 101]{kniberg}.
 	\subsubsection{Daglig Scrum}
+	I Scrum har man et daglig møte der hver person svarer på de tre spørsmålene:
+	\begin{itemize}
+    \item[1.] Hva gjorde jeg sist gang som hjalp gruppa å nå sprintmålet?
+    \item[2.] 
+    \item[3.]   
+    \end{itemize}
+
+Hva skal jeg gjøre i dag for å hjelpe gruppa å nå sprintmålet?
+Ser jeg noen eventuelle utfordringer for meg eller gruppa, som kan hindre oss i å nå sprintmålet?
+
+Scrum-møtet skal være kort, med fokus på å få hjelp om man har noen utfordringer.
 	\subsubsection{Retrospektiv-møtet}
 	\subsubsection{Scrum-roller}\label{scrumroller}
 	\textbf {Produkteier}
@@ -93,23 +105,18 @@ Tidlig bestemte gruppen seg for at alle skulle jobbe med forskjellige arbeidsopp
     [\cite{scrumguides}]
     \textbf {Scrum-master}
     \par En Scrum-master er en tilrettelegger for et produktutviklingsteam som bruker Scrum som utviklingsmetodikk, som gir teamet muligheter for selvorganisasjon og håndtering av plutselige endringer under prosjektet. I tillegg til det bruker han/hun scrum for å effektivisere hele arbeidsprosessen og er ansvarlig for at scrum blir brukt som tiltenkt.
-    
-    Dette innebærer at Scrum-master gjør følgende:
-- Hjelper med å rekke sprintmålene.
-- Støtter produkteieren med å oppdatere backloggen ved potensielle endringer underveis slik at teamet kan reagere på de.
-- Hjelper teamet med å finne en eksplisit definisjon for “done” med   vurdering av innspill fra kunden.
-- Lærer bort Scrum-teknikker til teamet for å sikre at produktet      leveres med høy kvalitet.
-- Hjelper teamet med å jobbe mer selvstendig.
-- Hjelper teamet med å identifisere og unngå eller fjerne             potensielle og faktiske kilder for forstyrring og hindring for både interne og eksterne kilder.
-    
+ 
     \begin{itemize}
-    \item[] 
-    \item[] 
-    \item[] 
+    \item[-] Hjelper med å rekke sprintmålene.
+    \item[-] Støtter produkteieren med å oppdatere backloggen ved potensielle endringer underveis slik at teamet kan reagere på de.
+    \item[-]  Hjelper teamet med å finne en eksplisit definisjon for “done” med vurdering av innspill fra kunden.
+    \item[-]  Lærer bort Scrum-teknikker til teamet for å sikre at produktet leveres med høy kvalitet.
+    \item[-]  Hjelper teamet med å jobbe mer selvstendig.
+    \item[-]  Hjelper teamet med å identifisere og unngå eller fjerne             potensielle og faktiske kilder for forstyrring og hindring for både interne og eksterne kilder.
     \end{itemize}
     
     [\cite{scrummaster}]
-    [\cite{scrummasterrole}]
+    [\cite{scrummasterrolle}]
    
     
 	
@@ -152,8 +159,8 @@ Tidlig bestemte gruppen seg for at alle skulle jobbe med forskjellige arbeidsopp
 
     Neste historier:
     Her er alle brukerhistoriene som ikke er implementert enda og ikke har fått plass i den nåværende sprinten.
-
-    Scrum and XP from the Trenches - 2nd Edition by Henrik Kniberg, May 13, 2015 side 72 - 78
+    
+    [\cite{kniberg}]
 
 
 	\subsubsection{Utviklingsverktøy}
@@ -176,7 +183,9 @@ Gruppen ble enige om å bruke Django som rammeverk for prosjektet da noen av oss
 
 I Django lager man en ny app for hver funksjon man vil at et program eller webområde skal ha. Alle komponentene til denne appen ligger i sin egen mappe slik at det som er spesifikt for appen blir lett å holde kontroll på. Vi har i tillegg en main-mappe som gjør det lettere å knytte disse sammen til et helhetlig produkt. Hver app består av tre hovedkomponenter, model.py, views.py og templates. i tillegg har man en adminfil og en egen fil, urls.py, til å definere hvilke linker som peker til hvilket view.
 
-I model.py definerer man modellene til databasen ved hjelp av Python. Man slipper både å skrive SQL-kode og det er enkelt å gjøre en kjapp endring på databasen, da django ordner det for en. Etter å ha definert feltene vil man hente dem ut via views.py. Views.py fungerebåde som en controller som definerer hva man kan gjøre med informasjonen, samt delvis som et view som gir brukeren muligheten til å se og å modifisere informasjonen. Templates er skrevet i HTML og er det laget i appen som vises i nettleseren. Som regel har man en base.html som fungerer som en ramme rundt den spesifikkes siden. Dette gjør at det er enkelt å holde design likt fra side til side. Views.py-filen gjør at databasen og templaten ikke avhenger av hverandre på noen måte. Urls.py definere hvilke linker som er koblet til hvilket view og admin.py definere felter i klasser i adminpanelet og hvilke data som skal hentes ut fra databasen.
+I model.py definerer man modellene til databasen ved hjelp av Python. Man slipper både å skrive SQL-kode og det er enkelt å gjøre en kjapp endring på databasen, da django ordner det for en. Etter å ha definert feltene vil man hente dem ut via views.py, denne filen fungere både som en controller som definerer hva man kan gjøre med informasjonen, samt delvis som et view som gir brukeren muligheten til å se og å modifisere informasjonen. Templates er det siste, og øverste, laget i appen og er skrevet i HTML. Det definerer hvordan siden skal vises i nettleseren. Urls.py definere hvilke linker som er koblet til hvilket view og admin.py definere felter i klasser i adminpanelet og hvilke data som skal hentes ut fra databasen.
+
+Siden rammeverket er bygget lagvis på denne måten vil ikke databasen og templaten avhenge av hverandre og kan enkelt brukes i andre prosjekter om man ønsker det. 
 
 \bigskip \noindent \textbf{Fordeler ved django}
 \par Etter at man har forstått hvordan komponentene kommuniserer med hverandre og hvordan de forskjellige pythondokumentene fungerer i forhold til hverandre, er det veldig lett å holde oversikt over hvilken del av prosjektet man jobber med og det blir mye lettere å oppdage hvor man har gjort feil om det skulle skje.
@@ -326,10 +335,13 @@ Burndowncharten viser hvordan progresjonen for oppgavene var i denne sprinten (s
 	
 	\section{Risikoanalyse}
 	Tidlig i prosjektet bestemte gruppen seg for at det var en god ide å skrive en risikoanalyse for hvilke faktorer som kunne hindre fremgangen i gruppen. Alle risikofaktorene er tilgjengelig i tabellform under vedlegg “risikoanalyse”. En viktig fordel for gruppen var at den bestod av mange gruppemedlemmer, så dermed kunne gruppen ta ansvar for å sette seg inn i og utføre arbeidsoppgaver ved fravær. Dette utspilte seg positivt, da flere fikk satt seg inn i andre deler av prosjektet.
+	
 	\section{Produkt}
 	Det ferdig produktet er en nettside som utfører alle oppgaver beskrevet av kunden. Nettsiden fungerer som en vanlig klubbside og kan brukes av alle som går til nettadressen vi har laget.
+	
 	\subsection{Brukermanual}
 	Se vedlegg for brukermanual til produktet:
+	
 	\subsection{Teknisk brukermanual}
 	Se vedlegg for teknisk brukermanual til produktet: 
 	
@@ -342,7 +354,7 @@ Unit testene til Django bruker en python modul kalt unittest. Denne modulen kjø
 Det ble skrevet et testdesign dokument der hver brukerhistorie ble testet, se vedlegg “brukerhistorie - testdesign”. Vedlegget består av hvordan gruppen gjennomførte testene, og hvilke tilbakemeldinger en forventet for hver test.
 
 I Knibergs bok under kapittelet om testing(side. 128-131), blir det fortalt om viktigheten med testere i et scrum team. Det sies også at et scrum team, sett bort fra scrum-masteren, skal være rolleløs og kryssfunksjonell. Hvor hele teamet bidrar med testingen, og samtidig er det en som tar mer ansvar når det gjelder testing og kjører mere komplekse tester. Dette medfører at hele teamet blir involvert i testingen, som er positivt fordi hele teamet er ansvarlig for produktkvaliteten.
-Dette har gruppen ___________
+Dette har gruppen ...
 
 Brukbarhetstesting
 Etter hver sprint skulle det som ble fullført i den avsluttende sprinten testes for kunden i form av brukbarhetstester. Brukbarhetstesten ble gjennomført av kunden og bestod av å løse scenario oppgaver på nettsiden relatert til de brukerhistoriene som ble fullført den sprinten. Hele gruppen var tilstede under testingen, men det var to personer som hadde hovedansvaret for testen, disse dannet hovedrollene testleder og observatør. Testlederen hadde ansvaret for å hjelpe kunden gjennom oppgavene og at testen ble gjennomført. Observatørens oppgave var å observere hvordan kunden brukte produktet, om det var brukervennlig og hva som bør endres på.
