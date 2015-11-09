@@ -1,16 +1,24 @@
 \documentclass[12pt,a4paper,norsk]{article}
 \usepackage[norsk]{babel}
 \usepackage[utf8]{inputenc}
-
+\usepackage{listings}
+\usepackage{csvsimple}
 \usepackage{natbib}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 \title{IT1901 \\ Prosjektrapport}
 \author{Gruppe 08 \\ 
     755200, 741068, 757688,\\
     757676, 755591, 757787, \\
     757701, 757734, 757770}
-\date{Oktober 2015}
 
 \renewcommand{\contentsname}{Innhold}
 \renewcommand\refname{Referanser}
@@ -24,7 +32,7 @@
 	\newpage
 	\section{Introduksjon}
 
-%For referanser skriv \cite{referansenavn}
+%For referanser skriv [\cite{referansenavn}]
 %og om du vil oppgi sidetall \cite[Side 1-3]{referansenavn}
 
 %%For å inkludere bilder i rapporten må du legge bildet i img-mappen og inkludere bildet på en slik måte:
@@ -33,9 +41,10 @@
 %  		\caption{Scrum Task-board, with burndown chart}
 %  		\label{fig:task-board}
 %	\end{figure}
+%Så må du huske å referere til figuren i teksten. Eks:
 %	Figur \ref{fig:task-board} viser...
 
-Dette prosjektet er et gruppeprosjekt gitt i faget IT1901 - Informatikk prosjektarbeid 1, ved NTNU, høst 2015. Målet med prosjektet og faget er å gi deltagerne et innblikk hvordan det er å jobbe i større gruppeprosjekter og arbeidsmetoder hvor en tredjepart er med i prosessen. I dette prosjektets tilfelle er tredjeparten en kunde, som skal ta i bruk programmet. Prosjektet skal lære hvordan gruppeprosjekter gjennomføres og gi erfaringer rundt programmeringsverktøy, arbeidsmodeller og den smidige arbeidsmetoden Scrum.
+Dette prosjektet er et gruppeprosjekt gitt i emnet IT1901 - Informatikk prosjektarbeid 1, ved NTNU, høst 2015. Målet med prosjektet og emnet er å gi deltagerne et innblikk hvordan det er å jobbe i større gruppeprosjekter og arbeidsmetoder hvor en tredjepart er med i prosessen. I dette prosjektets tilfelle er tredjeparten en kunde, som skal ta i bruk programmet. Prosjektet skal lære hvordan gruppeprosjekter gjennomføres og gi erfaringer rundt programmeringsverktøy, arbeidsmodeller og den smidige arbeidsmetoden Scrum.
 
 \subsection{Problemstilling}
 
@@ -47,42 +56,305 @@ Dette programmet skal gruppen utvikle etter kundens ønsker og behov, kunden har
 	
 \subsection{Rutiner og timeplan}
 
-Det første gruppen måtte løse var timeplanen for prosjektet. Ettersom en studentarbeidsuke er på 40 timer, og vi har 4 fag i semesteret, bestemte vi som gruppe for å møtes og jobbe sammen 10 timer fordelt på 3 dager i uka.
+Det første gruppen måtte løse var timeplanen for prosjektet. Ettersom en studentarbeidsuke er på 40 timer, og vi har 4 emner i semesteret, bestemte vi som gruppe oss for å møtes og jobbe sammen 9 timer fordelt på 3 dager i uka.
 
 \begin{itemize}
   \item[] Mandager fra 9:15 - 11:00 
-  \item[] Torsdager fra 8:15 - 12:00
+  \item[] Torsdager fra 8:30 - 12:00
   \item[] Fredager fra 10:15 - 14:00
 \end{itemize}
 
 Dette fordi det gikk opp med de forskjellige timeplanene og gruppen var innstilt på at korte økter som dette ville holde produktiviteten på de timene oppe og konstruktive. 
 
-\subsection{Gruppen og ansvarsfordeling}
 
-Tidlig bestemte gruppen seg for at vi ville at alle skulle delta innom forskjellige arbeidsoppgaver, og ikke låses i for fastsatte roller. Dette fordi vi ville dele kompetansen så mye som mulig og la alle få litt erfaring i de forskjellige aspektene ved prosjektet. På den måten får man gjort seg mindre avhengig av enkeltpersoner, og får aktivisert gruppemedlemmer så mye som mulig. 
+\subsection{Gruppen og ansvarsfordeling}
+Tidlig bestemte gruppen seg for at alle skulle jobbe med forskjellige arbeidsoppgaver, og ikke låses i for fastsatte roller. Dette for å dele kompetansen så mye som mulig og la alle få erfaring i de forskjellige aspektene ved prosjektet. På den måten får man gjort seg mindre avhengig av enkeltpersoner, og får aktivisert gruppemedlemmer så mye som mulig. 
 
 	\section{Arbeidsprosess}
 	\subsection{Scrum i teori}
+	Scrum er et rammeverk for å utvikle eller videreutvikle produkter, og er veldig populært innen software-utvikling. Scrum er i software-utvikling en smidig metode, og har som alle smidige metoder fokus på å respondere på endringer og samarbeid med kunden i løpet av prosjektets gang [\cite{agilemanifesto}].
+	
+	I et utviklingsprosjekt har man gjerne to parter: kunde og utvikler-team. I Scrum har man et Scrum-Team med en produkteier, en Scrum-master og utviklere (se avsnitt \ref{scrumroller} om Scrum-roller). Produkteier er kundens representant i Scrum-teamet. Produkteier jobber i samarbeid med utvikler-gruppa, ikke bare i planleggingsfasen av prosjektet, men også regelmessig under utvikling.
+	[\cite{scrumguides}]
 	\subsubsection{Produkt-backloggen}
+	Produkteier stiller krav til prosjektet i form av en liste med brukerhistorier. Brukerhistorier er en kort forklaring av hva som skal kunne gjøres med et mål. Brukerhistorier skrives ofte på formen “Som X skal jeg kunne Y for å Z”, hvor X beskriver brukertypen, Y handlingen brukeren skal kunne utføre og Z målet brukeren har med å utføre handlingen \cite[side 9]{kniberg}. Denne listen med brukerhistorier kalles for produkt-backlogen.
+
+    Backlogens brukerhistorier får en ID og et kort beskrivende navn. De blir vurdert fra viktigst til minst viktig, på bakgrunn av produkteiers prioriteringer og ønsker, men med eventuelle innspill fra utvikler-teamet.
 	\subsubsection{Sprintplanleggingsmøtet}
-	\subsubsection{Release-plan}
+	Utviklingsfasen deles opp i sykler, og blir i Scrum kalt sprinter. I begynnelsen av hver sykel har man i Scrum et sprintplanleggingsmøte. Deltakerne på møtet er ikke bare medlemmer av utviklingsteamet med Scrum-master, men også produkteier. Formålet med møtet er å forberede og justere produkt-backlogen og planlegge neste sprint.
+
+    Scrum-teamet avgjør hvor lang sprinten skal være og finner ut hvilke ressurser man har på denne sprinten. Gruppen avtaler tidspunkt for når på dagen gruppen skal ha det daglige Scrum-møtet, når retrospektiv-møtet for sprinten skal være og når demonstrasjonen for produktet skal være \cite[side 16]{kniberg}.
+	\subsubsection{Release-plan}\label{releaseplan}
 	\subsubsection{Daglig Scrum}
 	\subsubsection{Retrospektiv-møtet}
-	\subsubsection{Scrum-roller}
+	\subsubsection{Scrum-roller}\label{scrumroller}
+	\textbf {Produkteier}
+    \par Produkteier er kundens og eventuelle andre interessenter sin representant. Vedkommende er ansvarlig for å oppdatere  produktbackloggen og for å kommunisere til utviklerne hva brukerhistoriene innebærer.
+    [\cite{scrumguides}]
+    \textbf {Scrum-master}
+    \par En Scrum-master er en tilrettelegger for et produktutviklingsteam som bruker Scrum som utviklingsmetodikk, som gir teamet muligheter for selvorganisasjon og håndtering av plutselige endringer under prosjektet. I tillegg til det bruker han/hun scrum for å effektivisere hele arbeidsprosessen og er ansvarlig for at scrum blir brukt som tiltenkt.
+    
+    Dette innebærer at Scrum-master gjør følgende:
+- Hjelper med å rekke sprintmålene.
+- Støtter produkteieren med å oppdatere backloggen ved potensielle endringer underveis slik at teamet kan reagere på de.
+- Hjelper teamet med å finne en eksplisit definisjon for “done” med   vurdering av innspill fra kunden.
+- Lærer bort Scrum-teknikker til teamet for å sikre at produktet      leveres med høy kvalitet.
+- Hjelper teamet med å jobbe mer selvstendig.
+- Hjelper teamet med å identifisere og unngå eller fjerne             potensielle og faktiske kilder for forstyrring og hindring for både interne og eksterne kilder.
+    
+    \begin{itemize}
+    \item[] 
+    \item[] 
+    \item[] 
+    \end{itemize}
+    
+    [\cite{scrummaster}]
+    [\cite{scrummasterrole}]
+   
+    
+	
 	\subsubsection{Task-board}
+	Task-boardet er et verktøy for å gjøre hele arbeidsprosessen mer oversiktlig og interaktiv. Man skal kunne se hvilke brukerhistorier og deloppgaver som må gjøres for inneværende sprint, om noen har begynt på de, om de er ferdige og hvilken prioritet de har.
+
+    Task-boardet er delt inn i 4 kolonner: Not checked out, Checked Out, Done og Sprintmål.
+    
+    \begin{figure}[h!]
+ 		\includegraphics[width=\linewidth]{img/task-board.png}
+  		\caption{Eksempel Scrum Task-board, with burndown chart}
+  		\label{fig:task-board}
+	\end{figure}
+	Figur \ref{fig:task-board} viser...
+    
+    Not checked out: Her står brukerhistoriene som ingen har begynnt å jobbe med enda. Disse er sortert etter hvor viktig det er å få dem implementert. Der de viktigste står på toppen. En historie er delt opp i flere mindre oppgaver.
+
+    Checked out: Her er brukerhistoriene, deloppgavene og “ikke planlagte ting” (se avsnitt om Ikke planlagte ting) som noen har begynt å jobbe med. Det kan også stå hvem som har begynt med den.
+
+    Done: Er man ferdig med en brukerhistorie skal den og alle dens deloppgaver ende opp her. Da vet alle som jobber med prosjektet at denne historien oppfyller alle kravene som er nødvendig for at den kan kalles for “ferdig/done”.
+	
+    Sprintmål: Her vises sprintmålet og en seksjonen som er delt inn i tre deler: Brenndiagram, Ikke planlagte ting og de neste historiene i produkt-backlogen.
+
+    Brenndiagram:
+    Et todimensjonalt diagram der x-aksen viser datoene fra sprintstarten, sprintslutten og alle datoene i mellom. Y-aksen viser arbeidet som er igjen i storypoints. Så tegner man en graf ut fra hvor man er i sprinten (dato) og hvor mange deloppgaver/brukerhistorier som er blitt fullført denne dagen. Dersom tidsestimatene var riktige ender man opp med en graf som går fra diagrammets venstre topp til høyre bunn i en nesten rett linje.
+
+    Varselsignaler:
+	Grafen synker for fort:
+    Dersom brukerhistoriene tar mindre tid å implementere enn forventet vil grafen når x-aksen mye fortere enn planlagt. Dette skyldes dårlig estimering og kan løses ved å flytte flere brukerhistorier fra “neste historier”-seksjonen inn i den aktuelle sprinten.
+
+	Grafen synker for sakte:
+    Her var estimatene for lave. Brukerhistoriene krever mer tid enn forventet og man henger etter. Måten å løse det er å fjerne en eller flere brukerhistorie fra den nåværende sprinten og flytte dem over til “neste historier”-seksjonen.
+
+    Ikke planlagte ting:
+    Her finnes deloppgaver som dukker opp underveis. Disse var ikke planlagt fra starten men må implementeres for at produktet skal fungere.
+
+    Varselsignaler:
+	For mange ikke planlagte ting:
+    Dårlig planlegging kan lede til en flom av ikke planlagte elementer. Arbeidsmengden øker fortere enn man kan implementere/løse ting som automatisk leder til en for sakte synkende graf.
+
+    Neste historier:
+    Her er alle brukerhistoriene som ikke er implementert enda og ikke har fått plass i den nåværende sprinten.
+
+    Scrum and XP from the Trenches - 2nd Edition by Henrik Kniberg, May 13, 2015 side 72 - 78
+
+
+	\subsubsection{Utviklingsverktøy}
+
+\textbf{PyCharm}
+\par De fleste på gruppa brukte PyCharm for å jobbe med pythonfilene. PyCharm er et IDE som er mye brukt i programutvikling i Python siden det gjør det har mange flere funksjoner enn en vanlig teksteditor som gjør jobben enklere. I tillegg er det mulig å teste koden med en gang i konsollen, samt at det går an å bruke GIT i selve programmet for å holde styr på versjoner av prosjektet.
+
+\bigskip \noindent \textbf{GIT og Stash}
+\par For å holde orden på versjoner og endringer i prosjektet brukte vi GIT koblet opp til Stash for å forsikre oss om at ingen endringer og oppdateringer gikk tapt. På Stash hadde vi et repository, dette er litt som en mappe, der hele prosjektet ble laget. I dette repositoriet var det en master-branch, der det nyeste fungerende versjonen av produktet lå lagret, samt flere sidebranches. Man lager en ny sidebranch hver gang man skal jobbe med en ny brukerhistorie eller issue, og når man er ferdig blir denne merget inn i master igjen med de nye endringene. Dette gjør at det er mulig at flere personer jobber med samme kode på forskjellige maskiner samtidig, uten at det blir gjort feil.
+
+I tillegg til at man kan ha flere branches, vil man trenge godkjenning av andre gruppemedlemmer for å merge en ny branch inn i master. Slik kan man være sikrere på at feil i koden blir plukket opp tidlig. Alle endringer som har blitt gjort på prosjektet blir også lagret, så om noe virkelig går galt er det mulig å gå tilbake til en tidligere versjon og å gjøre ting på nytt.
+
+\bigskip \noindent \textbf{Rammeverk}
+\par Før vi bestemte oss for rammeverk gikk vi over brukerhistoriene vi hadde fått for å finne ut hva slags produkt som best ville passet for kunden. Etter å ha vurdert både desktopprogram i JavaFX og en mobilapp, kom vi frem til at en ren nettside var det beste valget. Hovedgrunnen til dette var at et desktopprogram er mer knotete å lage, samt at det er mindre brukervennlig, spesielt for demografien sluttebrukerne befinner seg i. Ikke bare må det være kompatibelt med operativsystemet til sluttbrukeren, men også lite flyttbart. En mobilapp virket mer aktuelt her siden de fleste studenter bruker mobilen til det meste. Valget av å lage nettside ble derfor gjort både på grunnlag av sluttbruker, fleksibilitet og det at de fungerer både på mobil og desktop.
+
+Gruppen ble enige om å bruke Django som rammeverk for prosjektet da noen av oss hadde erfaring med django fra før av og at det virket som det beste valget for denne type oppgave. Ikke bare kunne det meste av databaseprogrammeringen overlates til django, men de fleste på gruppen hadde erfaring med Python fra før av, så selv om strukturen var ukjent ville det ikke ta mange ukene før gruppemedlemmene kunne bruke det helt fint uten veiledning.
+
+\bigskip \noindent \textbf{Kort om django}
+\par Django er et webrammeverk som er skrevet i Python, og valget falt på dette fremfor en del andre webrammeverk, for eksempel Ruby on Rails, da alle i gruppa hadde erfaring med Python fra før av. En del av prosjektet er selvfølgelig å tilegne seg ny kunnskap for å løse ukjente oppgaver, og selv om de fleste kunne Python, var oppsettet til Django, og hvordan de ulike delene av rammeverket kommuniserer med hverandre helt ukjent.
+
+I Django lager man en ny app for hver funksjon man vil at et program eller webområde skal ha. Alle komponentene til denne appen ligger i sin egen mappe slik at det som er spesifikt for appen blir lett å holde kontroll på. Vi har i tillegg en main-mappe som gjør det lettere å knytte disse sammen til et helhetlig produkt. Hver app består av tre hovedkomponenter, model.py, views.py og templates. i tillegg har man en adminfil og en egen fil, urls.py, til å definere hvilke linker som peker til hvilket view.
+
+I model.py definerer man modellene til databasen ved hjelp av Python. Man slipper både å skrive SQL-kode og det er enkelt å gjøre en kjapp endring på databasen, da django ordner det for en. Etter å ha definert feltene vil man hente dem ut via views.py. Views.py fungerebåde som en controller som definerer hva man kan gjøre med informasjonen, samt delvis som et view som gir brukeren muligheten til å se og å modifisere informasjonen. Templates er skrevet i HTML og er det laget i appen som vises i nettleseren. Som regel har man en base.html som fungerer som en ramme rundt den spesifikkes siden. Dette gjør at det er enkelt å holde design likt fra side til side. Views.py-filen gjør at databasen og templaten ikke avhenger av hverandre på noen måte. Urls.py definere hvilke linker som er koblet til hvilket view og admin.py definere felter i klasser i adminpanelet og hvilke data som skal hentes ut fra databasen.
+
+\bigskip \noindent \textbf{Fordeler ved django}
+\par Etter at man har forstått hvordan komponentene kommuniserer med hverandre og hvordan de forskjellige pythondokumentene fungerer i forhold til hverandre, er det veldig lett å holde oversikt over hvilken del av prosjektet man jobber med og det blir mye lettere å oppdage hvor man har gjort feil om det skulle skje.
+
 	\subsection{Scrum i praksis}
 	\subsubsection{Sprint}
 	\subsubsection{Brukerhistorier}
 	\subsubsection{Task-board}
 	\subsubsection{Retrospektiv}
+	
+\bigskip \noindent \textbf{Retrospektiv Sprint 1}
+\par Etter den første sprinten hadde vi satt opp et retrospektivt møte dagen etter vi var ferdig med sprinten. Da satt hele gruppen seg ned og diskuterte hvordan det hadde gått. Alle fikk hver sin tur til å si: “Hva som gikk bra”, “Hva som gikk dårlig” og “Hva vi kan forbedre” (se vedlagt møtereferat: “Retrospektiv Sprint 1”).
+ 
+Hva som gikk bra:
+I den første sprinten var gruppen mer effektiv enn vi hadde trodd på forhånd, det resulterte i at vi fikk gjort flere brukerhistorier enn vi hadde trodd. Samarbeidet i gruppa fungerte veldig bra, spesielt at man innad i gruppa hjalp hverandre hvis man ikke fikk til noe. Det gikk også veldig bra å fordele oppgavene opp i gruppen, vi fikk delt oss opp i små grupper som tok hver sine deler og alle tok ansvar for å få gjort sin del. Gruppa var også flink til å dele kunnskapen med andre, hvis noen ikke kunne noe så hjalp en annen i gruppa. Dette var veldig lett ved bruk av “mob programming” der vi i små grupper hadde en person som faktisk satt og skrev koden, men flere som kom med ideer og sa hva han skulle skrive. Da kunne de som ikke var helt komfortabel med det nye kodespråket eller programmet være til hjelp uansett, og lære seg noe nytt samtidig. I tillegg så var alle flinke til å lære seg nye teknologier og programmer selv slik at arbeidet gikk fremover. 
+
+Hva som ikke gikk bra:
+Helt i starten av prosjektet ble vi enige om at vi skulle gjøre noe sosialt med gruppen hver uke, både for at alle i starten skulle bli bedre kjent med hverandre, og at man skulle få en pause fra de lange øktene med koding og arbeid. Et alternativ som alle var enige i var at vi skulle spise pizza sammen, dette ble ikke gjort iløpet av den første sprinten.  
+Et problem har vært at ikke alle i gruppa har kunnet vært med på alle gruppetimene på grunn av sykdom og annet. 
+I den første sprinten hadde vi lagt inn god tid til å sette opp utviklingsmiljøet og til å lære seg de forskjellige verktøyene som skulle brukes. Til tross for dette så oppstod det feil etterhvert i sprinten, selv om alt fungerte da vi satt det opp og skulle begynne å arbeide. Dette tok da ekstra tid da vi måtte fikse feilene på datamaskinene før vi kunne fortsette. 
+Det var til tider vanskelig å sette allesammen i arbeid den første sprinten, noen hadde problemer og det va ikke alltid nok arbeid til at alle skulle sitte å jobbe hele tiden. Det va også dumt at ikke alle i gruppa fikk prøvd seg på alle de forskjellige oppgavene, slik at man fikk bedre oversikt over hele prosjektet. 
+Som sagt tidligere så var vi effektive med oppgavene, det betyr at vi hadde underestimert antallet brukerhistorier vi fikk tid til å gjøre.
+
+
+Hva vi kan forbedre:
+En av de tingene som kom frem at vi kunne bli bedre på var å inkludere alle i flere oppgaver, og passe på at alle til en hver tid hadde noe å gjøre. Vi burde også bytte på hvilke oppgaver vi jobber med i sprinten, slik at alle får kodet og jobbet med rapport.
+Vi måtte også bli flinkere på å sette av tid til pauser, da vi også kunne gå ut og spise pizza sammen. 
+Når det kom til føring av logg etter møter så var alle enige om at det måtte vi bli bedre på, i tillegg til at vi måtte føre opp hvor mange timer vi hadde brukt på en oppgave, slik at det ble lettere å lage en “burndown chart”.
+
+Vi kom også frem til at vi skulle lage en risikoplan for prosjektet. Der skulle det stå hva vi gjorde når noen fikk problemer med datamaskiner, hvis noen var syk og lignende problemer. Da fikk vi vite kontret hva vi skulle gjøre i de situasjonene. 
+
+Oppsummering:
+I denne sprinten var det fokus på å komme igang med prosjektet. Mye av tiden ble brukt til å sette opp datamaskiner, lære mye nytt og til slutt starte på oppgavene. Gruppa fant ut hvordan vi skulle jobbe best sammen, både i hele gruppa og i små grupper på de forskjellige oppgavene. Vi har også kommet frem til ting som vi kan gjøre for å forbedre arbeidsprosessen framover. 
+
+\bigskip \noindent \textbf{Retrospektiv Sprint 2}
+\par Etter den andre sprinten hadde vi også et retrospektivt møte før vi begynte neste sprint, (se vedlagt møtereferat: “Retrospektiv Sprint 2”). Da gjorde vi det samme som i forrige retrospektivmøte.
+
+Hva som gikk bra:
+En av tingene som vi skulle forbedre fra forrige sprint var at alle skulle få mer oversikt over prosjektet. Dette fikk vi til i denne sprinten, vi var flinkere på å inkludere flere i de forskjellige oppgavene, som medførte at alle fikk mer forståelse av koden og bedre oversikt over prosjektet i en helhet. Itillegg til at alle fikk gjøre flere oppgaver så fikk de individuelt oppgaver som matchet deres eget nivå, slik at man fikk utfordringer å overkomme selv.
+Iløpet av sprinten så hadde vi fokus på teambuilding i gruppen, vi tok oss en pause fra arbeid og spiste pizza sammen på en fredag, en “tradisjon” som vi fortsatte med utover i prosjektet. Innimellom på møtene prøvde vi også å gjøre noe morsomt sammen, som å se videoer på youtube i pausene. Dette og fokuset på å samle gruppa gjorde at vi føltes med som en helhetlig gruppe som fungerte bedre sammen. 
+Generelt er inntrykket at vi jobber bra som en gruppe og ligger godt ann, spesielt siden vi fikk gjort en ekstra brukerhistore da vi gjorde en annen. 
+I denne sprinten fikk vi gjort mer enn bare koding i prosjektet, vi fokuserte mer på administrative oppgaver å skriveoppgaver. Vi fikk laget risikoanalyse, utbedret testplanen og har skrevet på rapporten. 
+
+Hva som ikke gikk bra:
+I slutten av sprinten fant vi ut at vi hadde litt for stor arbeidsmengde. Det gjorde at vi måtte overføre noen av deloppgavene på ene brukerhistorien til den neste sprinten. 
+Et problem som vi merket denne sprinten var at vi fikk mindre ressurser å jobbe med. Det var flere enn tidligere som var borte, noen dro på høstferie og noen var syke iløpet av perioden. Dette var litt av grunnen til at arbeidsmengden ble for stor, itillegg til at medlemmer i gruppa oftere dukket opp seint, slik at det tok lengre tid å komme igang med møtene. 
+
+Hva vi kan forbedre:
+Siden mange var borte denne sprinten så var en ting gruppen kunne bli bedre på å finne seg arbeidsoppgaver å gjøre hjemme, og å faktisk prøve å gjøre de.
+Itillegg så skal vi ha en person som følger opp de som er borte/seine og ha 1-1 samtaler med dem for å finne bedre ut hvorfor de er seine og hvordan det kan unngås. 
+
+Oppsummering:
+I denne sprinten forbedret gruppen seg på noen av de punktene som vi skulle jobbe med fra forrige sprint, som at alle skulle få delta på mer på forskjellige oppgaver. Til forskjell fra den forrige sprinten der gruppen overestimerte tiden på brukerhistoriene så ble det noen oppgaver igjen etter denne sprinten på grunn av mye fravær. 
+
+\bigskip \noindent \textbf{Retrospektiv Sprint 3}
+\par Etter den tredje sprinten hadde vi også et retrospektivt møte før vi begynte neste sprint, (se vedlagt møtereferat: “Retrospektiv Sprint 3”). Da gjorde vi det samme som i de forrige retrospektivmøtene. 
+
+Hva som gikk bra:
+En av tingene som har gått bra denne sprinten er at flere i gruppa har tatt mer ansvar for sitt eget arbeid, har vært flinkere til å finne seg oppgaver å gjøre og å være mer engasjert i prosjektet. Spesielt har det gått bra å jobbe hjemmefra når noen i gruppa har vært syk, kommunikasjonen mellom de som har vært borte og gruppen har vært så bra at dette har gått smertefritt. Dette viser god forbedring fra forrige sprint da vi ville bli bedre på akkurat dette, mye fordi vi har hatt en person som følger opp de som er borte. 
+Gjennom sprinten så har gruppen vært effektiv med de arbeidsoppgavene vi har hatt, det vises ved at de oppgavene som var igjen fra forrige sprint, de fra denne sprinten og deler av neste sprint har blitt gjort. Dette er mye fordi alle har vært flink til å finne enkle løsninger på de oppgavene som har blitt gjort. 
+Itillegg til brukerhistorier og design har gruppen også gjort noe morsomt på nettsiden med noen gjemte funksjoner, også kalt “easter eggs”.  
+
+Hva som ikke gikk bra:
+En av de tingene som har gått dårlig i denne spriten er at gruppen har vært dårlig på å estimere tid på brukerhistoriene, vi trodde det kom til å gå lengre tid på dem. Dette var fordi ingen hadde god nok kjennskap til de ulike verktøyene som skulle brukes til å gjøre et mer riktig estimat, f.eks. for å lage kart på en nettside.
+I sprinten så ble det for dårlig fokus på å føre opp timer som ble brukt på de forskjellige oppgavene og å skrive logg for hva som skjedde på hvert møte. 
+Et problem var at flere i gruppa ble syk og var borte flere ganger enn tidligere, men en i gruppa tar alltid kontakt hvis noen er borte og ikke gir beskjed, slik kan de få oppgaver å gjøre hjemme. 
+Mot slutten av sprinten så var mye av arbeidet ferdig, da var det generelle inntrykket i gruppen at alt var ferdig. Det gjorde at man slappet litt mer av og ikke jobbet like hardt som var ønskelig, iallefall siden det viste seg at det var problemer med noen av funksjonene som vi måtte fikse i neste sprint. 
+Når det kom til rapporten så mente flere i gruppa at det var vanskelig å vite hvordan man skulle skrive en bra rapport, det førte til at deler av rapportskrivingen gikk sakte da man satt seg fast.
+
+Hva vi kan forbedre:
+Vi har sett tidligere at en logg for hvert møte kan være bra for dem som er borte en dag så de får oversikt over hva som har blitt gjort mens de var borte. Selv om denne kommunikasjon har gått bra denne sprinten så er det fortsatt ønskelig å ha en logg til senere, så dette er et punkt gruppen må bli bedre på til neste sprint. 
+Et annet punkt gruppen kan bli bedre på er å holde de møtene vi har fokusert på de oppgavene som må gjøres, til tider hender det at fokuset drifter over på ting som ikke er så viktig. Siden det fortsatt er mye fravær og forseintkomminger så ville det vært bra for gruppa at alle blir flinkere til å komme til tide, kanskje ved å sette på 2 alamer på morgenen.   
+Noe som er veldig viktig er at man tester funksjoner bedre før man skriver at de er ferdig, da slipper gruppen å tro at alt er ferdig når det fortsatt er feil i funksjoner. 
+
+Oppsummering:
+I denne sprinten så har gruppen jobbet både bra og dårlig. Oppgavene ble gjort “ferdig” tidlig, men på grunn av dårlig testing så visste vi ikke om feilene før mot slutten av sprinten, da ble noen oppgaver overført til neste sprint der det ikke var så mye kodejobb å gjøre. Da gruppen trodde alt var ferdig tidlig ble det stort fokus på skriving av rapporten, dette var positivt da mye av arbeidet på rapporten ble gjort.
+
+\bigskip \noindent \textbf{Retrospektiv Sprint 4}
+\par Etter den tredje sprinten hadde vi også et retrospektivt møte før vi begynte neste sprint, (se vedlagt møtereferat: “Retrospektiv Sprint 4”). Da gjorde vi det samme som i de forrige retrospektivmøtene. 
+
+Hva som gikk bra:
+I denne sprinten ble vi helt ferdig med produktet, selv om det ikke var mange oppgaver igjen til denne sprinten så er gruppen godt fornøyd med å være ferdig. Dette har vi gjort ved å ha god arbeidsånd mot slutten av prosjektet, det har vært godt oppmøte og mye har blitt gjort. 
+Gruppen er også fornøyd med hvor mye som er ferdig på rapporten, og det merkes at det har blitt gjort arbeid på den i tidligere sprinter også. 
+
+Hva som ikke gikk bra:
+Noe som gruppen ikke var forberedt på var at det skulle skrives dokumentasjon på all koden, dette var ikke en del av den planen vi la opp mot slutten av prosjektet. 
+Selv om vi har jobbet godt og fått gjort mye så har det til tider vært litt dårlig fokus og tull på møtene, det viser bare at det er alltid rom for forbedring. En grunn til dette er at mot slutten av prosjektet begynner folk å bli litt lei og slitne, spesielt når man sitter og skriver rapport i lengre perioder. Gruppen merket til tider at 4 timer i strekk var litt for lange arbeidsmøter, derfor ble de kuttet ned til 2 timer hver gang.
+Et problem med å skrive rapport er at vi har skrevet over maksgrensen for ord, som kan føre til at det er noe urelevant og duplisert arbeid. 
+
+Hva vi kan forbedre:
+En ting gruppen kunne forbedret var å involvere flere personer i rapportskriving tidligere, slik at det ikke ble like mye å gjøre mot slutten. 
+Gruppen skulle også klart å holde bedre fokus på møtene, for å være enda mer effektive. 
+En annen ting vi kunne gjort bedre var å endre arbeidsmetoden i denne sprinten, der det for det meste bare var rapportskriving. Fordi måten man jobber best med kode og rapport er ikke nødvendigvis det samme, f.eks. lengde på arbeidsøkter, og man kan gjøre mer hjemme og møtes færre ganger. 
+
+Oppsummering:  
+I denne sprinten har gruppen fått gjort mye, både gjort ferdig produktet og skrevet rapport. Vi har funnet noen punkter som vi kunne har gjort annerledes når det kommer til arbeidsmetode og gruppesamarbeid. 
+
 	\subsubsection{Sprintgjennomgang}
+\bigskip \noindent \textbf{Sprint 1}
+\par I starten av sprint 1 hadde gruppen et sprintplanleggingsmøte, der diskuterte vi hva vi skulle gjøre i sprinten og hvilke brukerhistorier vi skulle få gjort. De brukerhistoriene som ble prioritert i første sprint var de som var satt opp i releaseplanen med høy prioritet fra kunden (se vedlegg: releaseplan v1). Gruppen laget en ny brukerhistorie som man trodde ville ta lang tid å gjennomføre og som ble satt til sprint 4, nemlig administrasjon av koiene på nettsiden. 
+
+Halvparten av arbeidsøktene i sprint 1 var satt opp til å sette opp datamaskiner, da skulle Stash settes opp til alle i gruppen, alle skulle få installert PyCharm og lastet ned Django. Itillegg til dette ble nettsiden som skulle videreutvikles senere laget, og administrasjonsdelen til denne siden ble satt opp. Dette tok ikke så lang tid som det var estimert, det gjorde at det ble mer tid til å kode brukerhistoriene som var satt opp. 
+
+I starten delte gruppen seg opp i to små grupper som tok for seg brukerhistoriene om å rapportere inn ved og ødelagte ting på koiene. Det var fordi disse to var ganske lik, så derfor kunne de to gruppene lære seg det samme, og fortsatt kunne hjelpe hverandre med det som var vanskelig i oppgavene. Dette var det første mange i gruppen gjorde i Django og det var derfor bra å ha noen å spørre om hjelp. Disse brukerhistoriene gikk mye på å lage et skjema der brukere kunne sende inn informasjon, da dette var de første oppgavene som ble gjort tok de litt noe lengre tid enn estimert. Dette jevnet seg ut etterhvert i sprinten, da flere ble komfortabel med Django gikk arbeidet mye fortere. 
+
+Den siste brukerhistorien om at koiestyret skulle kunne ta ut rapporter av ødelagte tok veldig mye mindre tid enn estimert, fordi det var mye enklere da man kom igang med det enn gruppa hadde trodd på forhånd. Dette gjorde at vi hadde tid til overs i sprinten, vi valgte da å overføre brukerhistorien om å rapportene inn tekniske utbedringer på en koie fra sprint 2 til 1.  Vi valgte den fordi den hadde lavest tidsestimat slik at vi var sikker på at vi ble ferdig med den i sprint 1, selv om det var den med lavest prioritet fra kunden. Dette ble også klarert i møte med kunden. 
+
+Burndowncharten viser hvordan progresjonen for oppgavene var i denne sprinten (se vedlegg).
+
+\bigskip \noindent \textbf{Sprint 2}
+\par I starten av sprint 2 hadde gruppen også et sprintplanleggingsmøte. Vi gikk ut fra releaseplanen for hva som skulle gjøres, men siden en brukerhistorie ble flyttet til sprint 1 ble en hentet fra sprint 3 til sprint 2 også (se vedlegg: releaseplan v2). Da valgte gruppen den brukerhistorien som hadde mest lik estimert tid som den som egentlig var i sprint 2. Brukerhistorien som gruppen laget i forrige sprint om administrasjon av koier ble fjernet, dette var fordi at denne fuksjonen ble implementert nesten av seg selv da andre oppgaver ble gjort, vi valgte da å fjerne den siden det ikke faktisk ble gjort noe arbeid spesifikt på den. Gruppen valgte også i sprint 2 å lage enda en brukerhistorie, den handlet om å starte å designe nettsiden med forside og navigering rundt på siden. Dette gjenspeiler målet for sprinten, som var: Ha en fungerende nettside som kun mangler litt funksjonalitet.
+
+I denne sprinten handlet brukerhistoriene om direkte kontakt mellom koiestyret og brukere, og det å ta ut rapporter for ved og teknisk stand. Her som før ble oppgavene fordelt på mindre grupper. Funksjonene for å ta ut vedrapporter og tenknisk stand gikk veldig bra, fordi det lignet på det som ble gjort i forrige sprint.
+
+Den brukerhistorien som var viktigst i sprinten var å kunne ta ut ved rapporter og prognoser for en eller flere koier. Den var litt vanskeligere, dette var fordi man selv måtte definere hvor mye ved som gikk for hver dag koien ble brukt og så lage en graf ut av dette og en prognose for når det blir tomt. 
+
+I denne sprinten ville gruppen bli ferdig med brukerhistoriene som handlet om kommunikasjon mellom koiestyret og brukeren, derfor ble et epostsystem for å melde fra om ting som måtte tas med til og fra koier implementert. 
+
+Arbeidet med nettsiden kom også ganske langt, det ble laget forside og en navigasjonsmeny der de fuksjonene som ble gjort i sprint 1 og 2 ble lagt til. Dette gjorde at nettsiden allerede hadde mye funksjonalitet, blant annet å kunne melde inn ved, ødelagte ting å tekniske utbedringer fra brukeren, og at koiestyret kunne hente ut rapporter for dette. 
+
+I slutten av sprinten ble det funnet noen bugs i vedprognosefunksjonen som det ikke ble tid til å gjøre iløpet av sprinten, disse ble derfor overført til den neste sprinten.
+
+Burndowncharten viser hvordan progresjonen for oppgavene var i denne sprinten (se vedlegg).
+
+\bigskip \noindent \textbf{Sprint 3}
+\par I starten av sprint 3 hadde gruppen også et sprintplanleggingsmøte. Vi gikk ut fra releaseplanen for hva som skulle gjøres (se vedlegg: releaseplan v3). I denne sprinten var det kun 2 brukerhistorier, men tidsestimatet på dem var det høyeste som var gitt noen brukerhistorier. Itillegg til disse så hadde gruppen oppgaver fra forrige sprint som måtte gjøres ferdig, og mye arbeid med å få nettsiden til å se ferdig ut. Det var også på tide å vise frem en demonstrasjon av produktet til nå. 
+
+For brukerhistorien om å få oversikt over vedlikedholdbehov utfra forventet levealdre på konstruksjonen av koien var det noe usikkerhet på hvordan den skulle gjøres. Om man måtte gå gjennom alle koiene å finne ut når de ble bygget, oppusset og når de trengte å gjøres noe med. Da dette ville kreve mye arbeid, å det ikke var sikkert at man ville finne ut av det i det hele tatt. Etter å ha snakket med kunden kom man frem til en bedre løsning der man istedet legger inn når noe er reparert/satt inn nytt og hvor lenge disse vil vare, så kan man se på nettsiden når de må gjøres noe med igjen. 
+
+For brukerhistorien om å lage et kart over koiene med status over utstyr og ved så var oppgaven forståelig, men selve utføringen med å lage kartet tok litt tid siden det var noe helt nytt å sette seg in.. Vi løste oppgaven ved å lage kartet med riktige posisjoner på koiene, og at man kan trykke på hver koie og få opp link til vedstatus og utstyr. Her fikk vi en bug der man ikke kom til riktig koie på linkene, som ikke ble løst før i sprint 4.   
+
+Begge disse brukerhistoriene tok mye mindre tid enn estimert, derfor bestemte gruppa seg for å hente den siste brukerhistorien fra sprint 4 og gjøre den. På den skulle koiestyret få oversikt over overnattinger på koier i et gikk område. Får å gjøre dette laget vi et script som hentet informasjonen om overnattinger fra NTNUI sine nettsider, deretter laget vi soner på kartet med de forskjellige koiene og la sammen overnattinger for hver sone som vises under kartet. 
+
+Det ble også jobbet med nettsiden denne sprinten, spesielt med å endre administrasjonsiden slik at den ble lettere å forstå, og å gjøre nettiden mer brukervennlig.  
+
+Burndowncharten viser hvordan progresjonen for oppgavene var i denne sprinten (se vedlegg).
+
+\bigskip \noindent \textbf{Sprint 4}
+\par I starten av sprint 3 hadde gruppen også et sprintplanleggingsmøte. Vi gikk ut fra releaseplanen for hva som skulle gjøres. I denne sprinten var det ingen brukerhistorier igjen, den som var planlagt å gjøre her ble overført til forrige sprint istedet (se releaseplan v3). Dette gjorde at de oppgavene som skulle gjøres gikk mer på finpussing av nettsiden og testing av systemet generelt, som reflekteres i målet for sprinten: Få et fullstendig produkt, hvor produktets funksjoner oppleves intuitivt for brukeren.
+
+Nettsiden ble endret på flere måter, nå som gruppen hadde god tid ble kartene som allerede var implementert i tidligere brukerhistorier endret. Dette var fordi vi ville ha en finere løsning, og fordi det var en bug med linkene fra kartet til status på koiene som også måtte fikses. Det ble også gjort flere endringer i designet på siden, som å endre navn på linker til å være lettere å forstå hvor de gikk. Etter å ha snakket med kunden ble også posisjonen av kartet og informasjonen om overnattinger flyttet på for å få bedre oversikt. 
+
+Bortsett fra dette gikk tiden til å skrive rapport, testing, skriving av dokumentasjon og utføring av akseptansetest med kunden. 
+
+Burndowncharten viser hvordan progresjonen for oppgavene var i denne sprinten (se vedlegg).
+
+	
 	\section{Risikoanalyse}
+	Tidlig i prosjektet bestemte gruppen seg for at det var en god ide å skrive en risikoanalyse for hvilke faktorer som kunne hindre fremgangen i gruppen. Alle risikofaktorene er tilgjengelig i tabellform under vedlegg “risikoanalyse”. En viktig fordel for gruppen var at den bestod av mange gruppemedlemmer, så dermed kunne gruppen ta ansvar for å sette seg inn i og utføre arbeidsoppgaver ved fravær. Dette utspilte seg positivt, da flere fikk satt seg inn i andre deler av prosjektet.
 	\section{Produkt}
+	Det ferdig produktet er en nettside som utfører alle oppgaver beskrevet av kunden. Nettsiden fungerer som en vanlig klubbside og kan brukes av alle som går til nettadressen vi har laget.
+	\subsection{Brukermanual}
+	Se vedlegg for brukermanual til produktet:
+	\subsection{Teknisk brukermanual}
+	Se vedlegg for teknisk brukermanual til produktet: 
+	
+	\section{Testing}
+	Testing
+
+Generell Testing
+Unit testene til Django bruker en python modul kalt unittest. Denne modulen kjører tester ved å skrive egne klasser for å teste koden. Når manage.py startapp lager en ny applikasjon i django, blir det laget en python fil kalt tests.py i applikasjons mappen. Denne python filen blir brukt til å skrive testklassene. Django kjører også nettsiden i debug mode. Dette velges ved å sette debug = True i settings.py filen. Debug mode tilbyr en detaljert visning av feilmeldingene som måtte oppstå når nettsiden kjøres. Dette ble selvsagt benyttet, nettopp fordi koden måtte fungere for å få sett nettsiden. Gruppen valgte å ikke bruke unit tester i python, og fokuserte heller på å teste brukerhistoriene selv, og ved brukbarhetstester for kunden.
+
+Det ble skrevet et testdesign dokument der hver brukerhistorie ble testet, se vedlegg “brukerhistorie - testdesign”. Vedlegget består av hvordan gruppen gjennomførte testene, og hvilke tilbakemeldinger en forventet for hver test.
+
+I Knibergs bok under kapittelet om testing(side. 128-131), blir det fortalt om viktigheten med testere i et scrum team. Det sies også at et scrum team, sett bort fra scrum-masteren, skal være rolleløs og kryssfunksjonell. Hvor hele teamet bidrar med testingen, og samtidig er det en som tar mer ansvar når det gjelder testing og kjører mere komplekse tester. Dette medfører at hele teamet blir involvert i testingen, som er positivt fordi hele teamet er ansvarlig for produktkvaliteten.
+Dette har gruppen ___________
+
+Brukbarhetstesting
+Etter hver sprint skulle det som ble fullført i den avsluttende sprinten testes for kunden i form av brukbarhetstester. Brukbarhetstesten ble gjennomført av kunden og bestod av å løse scenario oppgaver på nettsiden relatert til de brukerhistoriene som ble fullført den sprinten. Hele gruppen var tilstede under testingen, men det var to personer som hadde hovedansvaret for testen, disse dannet hovedrollene testleder og observatør. Testlederen hadde ansvaret for å hjelpe kunden gjennom oppgavene og at testen ble gjennomført. Observatørens oppgave var å observere hvordan kunden brukte produktet, om det var brukervennlig og hva som bør endres på.
+
+Ved å teste målene gruppen oppnådde for kunden, fikk vi sett hvordan produktet ble brukt av en person som ikke har jobbet med nettsiden. Dette hjalp gruppen til å se om produktet var brukervennlig eller hvilke deler som var forvirrende for kunden. 
 
 \newpage
+\phantomsection
 \addcontentsline{toc}{section}{Referanser}
 \bibliographystyle{agsm}
 \bibliography{referanser}
-
+\section{Vedlegg}
+\include{vedlegg/test_plan}
 \end{document}
 

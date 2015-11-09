@@ -1,0 +1,116 @@
+\subsection{Testplan}
+\subsubsection{Introduksjon}
+Produktet vårt er en nettløsning for NTNUI koiene der man skal kunne rapportere inn feil ved en koie, samt andre løsninger for å gjøre det enkelt for koiestyret og kunde å få beskjeder angående koier. 
+
+Når det kommer til testing av produktet vårt, så har vi gått for en modell med brukbarhetstester av ferdige moduler etter hver sprint, hvor vi så avslutter det hele med en stor aksepansetest. Tester vil altså bli gjort av alle ferdige brukerhistorier annenhver uke. 
+
+Testene vil være grundigere jo viktigere enn bruker historie er, men vi vil uansett teste hver enkelt brukerhistorie. Brukerhistoriene vil testes både alene, samt i et helhetlig GUI når dette er klart. 
+
+
+
+\subsubsection{Test elementer}
+
+Vi skal som nevnt i intoduksjonen teste hver enkelt brukerhistorie, samt GUI på løsningen vår. Siden løsningen vår også er tilpasset mobile enheter så skal vi også kjøre en enkelt test på hele systemet når det er ferdig via en mobil enhet. Følgende elementer og brukerhistorier i systemet skal testes: 
+
+\begin{itemize}
+\item GUI
+\item Mobilt GUI
+\item Koiebruker skal kunne rapportere som ødelagte ting
+\item Koiestyret skal kunne få rapport om ødelagte ting fra en eller flere koier
+\item Koiebruker skal kunne rapportere om status på ved ved en koie
+\item Koiestyret skal kunne få en vedstatus på en eller flere koier, samt få en prognose for når det går tomt.
+\item Koiebruker skal få beskjed om å ta med utstyr til en reservert koie
+\item Koiestyret skal få opp et kart med koier og se status på utstyr og ved på hver koie
+\item Koiestyret skal kunne sende beskjed til bruker for å få tatt med utstyr til/fra koia
+\item Koiestyret skal få oversikt over antall overnattinger innenfor et område så det kan planlegges nye koier
+\item Koiestyret skal kunne få en teknisk stand ovenfor koier for å kunne planlegge vedlikehold og utbedringer
+\item Koiebruker skal kunne rapportere inn forslag til tekniske utbedringer på koier.
+\item Koiestyret skal kunne få en oversikt over vedlikeholdsbehov på en koie utfra forventet levealder på elementer av konstruksjonen til koiene.
+\end{itemize}
+
+\subsubsection{Fremgangsmåte}
+Systemet vil bli testet ved gjentatte brukertester. Systemet behandles da som en “black box” hvor en har inputverdier med forventede outputverdier. Brukertestene gjennomføres i slutten av hver sprint med kunden slik at eventuelle missforståelser av funksjoner kan rettes opp senest i dette steget. 
+Test leveranser
+Følgende dokumenter er identifisert som leveranser tilknyttet testingsprosessen:
+Test plan 
+Dette dokumentet som beskriver testplanen for utvikling av Koie Admin system.
+Testdesign mal 
+Eget dokument som beskriver hvordan en test skal settes opp etter et standard format. Se vedlegg Testdesign beskrivelse
+Brukerhetstest mal 
+Eget dokument som beskriver hvordan lage en brukbarhetstes. Se vedlegg Brukbarhetstest.
+Oppgaver under testing
+Testleder
+Testlederens oppgave er å beskrive testen for brukeren, passe på at brukeren forstår oppgaven og på andre måte hjelpe brukeren med å gjennomføre testen uten å hjelpe brukeren med innholdet i testen. 
+Observatør
+Observatørens oppgave er å observere brukeren og notere poblmer som oppstår igjenom testen. 
+
+
+
+\subsubsection{Ansvarsoppgaver}
+Selve testene vil ha behov for en testleder og en observatør. Vi tenker å la disse rollene gå på rundgang slik at alle får vært med på å gjennomføre en brukbarhetstest. Annsvaret for å lage brukbarhetstestene går også på rundgang slik at flest mulig på gruppa får anledning til å være involvert i utviklingen av disse.
+
+\subsubsection{Bemanning og opplæringsbehov}
+Vi tenger en testleder og en observatør. 
+
+Testlederen trenger å sette seg inn i 10 punkter hentet fra PU:
+
+1. Introduser deg selv. 
+2. Beskriv hensikten med testen. 
+3. Fortell deltakerene at de kan avbryte når de vil.
+4. Beskriv utstyret i rommet og begrensningene til prototypen. 
+5. Lær bort hvordan man tenker høyt. 
+6. Forklar at du ikke kan tilby hjelp under testen. 
+7. Beskriv oppgaven og introduser produktet. 
+8. Spør om det er noe de lurer på og kjør testen. 
+9. Avslutt testen med å la brukeren uttale seg før du samler evt. løse tråder. 
+10.Bruk resultatene. 
+
+Observatøren skal følge med og notere ting han ser eller hører brukeren slite med / missforstår. Han skal også notere systemfeil som oppstår under testen.
+
+\subsubsection{Tidsplan}
+Test milepeler:
+
+23 september - Sprint 1 ferdig - brukbarhetstest
+7 oktober - Sprint 2 ferdig - brukbarhetstest
+15 oktober - Demonstrasjon 1 - Tilbakemelding men ikke direkte test
+21 Oktober - Sprint 3 ferdig - brukbarhetstest
+4 November Sprint 4 ferdig, Systemet ferdig - akseptansetest
+12/13 november - demonstrasjon 
+
+\subsubsection{Vedlegg}
+\bigskip \noindent \textbf Testdesign beskrivelse
+
+Id
+
+test id
+Test item
+test navn
+Fremgangsmåte
+Beskrivelse av testen
+Suksess / feil 
+hvordan systemet ser u ved sukkess / feil
+Data inn
+
+
+Forventet ut data
+
+
+Hvordan gjennomføre testen
+bunktvis beskrivelse av testen
+Refferanser
+til brukerhistorier
+Avhengigheter
+til tester
+
+
+
+Brukbarhetstest
+Brukbarhetstest av NTNUI Koie (Gruppe 08)
+	8.30-9:00 torsdag 24. september 2015 - Rom R8
+Roller
+	Testleder: Henry, Observatør: Dag
+Scenarioer
+
+Scenario 1
+Gå til adressen: http://127.0.0.1:8000/firewood/
+Rapporter at det finnes 20 ved på Flåkoia.
