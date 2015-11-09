@@ -90,15 +90,20 @@ Tidlig bestemte gruppen seg for at alle skulle jobbe med forskjellige arbeidsopp
 	I Scrum har man et daglig møte der hver person svarer på de tre spørsmålene:
 	\begin{itemize}
     \item[1.] Hva gjorde jeg sist gang som hjalp gruppa å nå sprintmålet?
-    \item[2.] 
-    \item[3.]   
+    \item[2.] Hva skal jeg gjøre i dag for å hjelpe gruppa å nå sprintmålet?
+    \item[3.]   Ser jeg noen eventuelle utfordringer for meg eller gruppa, som kan hindre oss i å nå sprintmålet?
     \end{itemize}
-
-Hva skal jeg gjøre i dag for å hjelpe gruppa å nå sprintmålet?
-Ser jeg noen eventuelle utfordringer for meg eller gruppa, som kan hindre oss i å nå sprintmålet?
-
-Scrum-møtet skal være kort, med fokus på å få hjelp om man har noen utfordringer.
+    Scrum-møtet skal være kort, med fokus på å få hjelp om man har noen utfordringer.
 	\subsubsection{Retrospektiv-møtet}
+	Retrospektive møter en en viktig del av scrum. Retrospektiv-møtet er gruppens mulighet til å forbedre prosesser og arbeidsrutiner. Retrospektiver har man på slutten av hver sprint, og både utviklingsgruppen, Scrum-master og produkteier deltar. På møtet diskuterer man og svarer på følgende spørsmål:
+	\begin{itemize}
+    \item[1.] Hva gikk bra i løpet av denne sprinten?
+    \item[2.] Hva gikk mindre bra i løpet av denne sprinten?
+    \item[3.] Hva kan gruppen gjøre bedre neste sprint?
+    \end{itemize}
+    Det siste punktet er det som er hovedfokuset i møtet. Det er viktig å komme med konkrete eksempler slik at man er helt sikker på hva det er man kan endre på til neste gang. Retrospektiv skal være den tryggeste måten for gruppen å få frem sin mening, det er derfor viktig at alle i gruppen blir hørt og at ingen skal føle at de ikke kan si sin mening. En måte å få til dette på er at man en etter en får si sin mening om sprinten, uten at noen andre avbryter eller kommer med kommentarer til det som blir sagt. Etter at alle har fått sagt det de vil, så kan man diskutere i gruppa hva som er viktigst å fokusere på å forbedre neste sprint. Da kan man velge ut noen ting som er spesielt viktig å gjøre bedre neste sprint. 
+
+    Disse møtene er viktig fordi det er alltid rom for forbedring i alle grupper. Hvis man ikke har noe slags oppsatt møte der man tar opp hva som har skjedd i sprinten så vil man gjøre akkurat de samme feilene i den neste. Dette gir gruppen muligheten til å bli bedre og bedre etterhvert som prosjektet går\cite[side 82 - 88]{kniberg}.
 	\subsubsection{Scrum-roller}\label{scrumroller}
 	\textbf {Produkteier}
     \par Produkteier er kundens og eventuelle andre interessenter sin representant. Vedkommende er ansvarlig for å oppdatere  produktbackloggen og for å kommunisere til utviklerne hva brukerhistoriene innebærer.
@@ -121,16 +126,15 @@ Scrum-møtet skal være kort, med fokus på å få hjelp om man har noen utfordr
     
 	
 	\subsubsection{Task-board}
-	Task-boardet er et verktøy for å gjøre hele arbeidsprosessen mer oversiktlig og interaktiv. Man skal kunne se hvilke brukerhistorier og deloppgaver som må gjøres for inneværende sprint, om noen har begynt på de, om de er ferdige og hvilken prioritet de har.
-
-    Task-boardet er delt inn i 4 kolonner: Not checked out, Checked Out, Done og Sprintmål.
+	Task-boardet er et verktøy for å gjøre hele arbeidsprosessen mer oversiktlig og interaktiv. Man skal kunne se hvilke brukerhistorier og deloppgaver som må gjøres for inneværende sprint, om noen har begynt på de, om de er ferdige og hvilken prioritet de har. Figur \ref{fig:task-board} viser et eksempel-task-board.
     
     \begin{figure}[h!]
  		\includegraphics[width=\linewidth]{img/task-board.png}
-  		\caption{Eksempel Scrum Task-board, with burndown chart}
+  		\caption{Eksempel Task-board, med brenn diagram}
   		\label{fig:task-board}
 	\end{figure}
-	Figur \ref{fig:task-board} viser...
+	
+    Task-boardet er delt inn i 4 kolonner: Not checked out, Checked Out, Done og Sprintmål.
     
     Not checked out: Her står brukerhistoriene som ingen har begynnt å jobbe med enda. Disse er sortert etter hvor viktig det er å få dem implementert. Der de viktigste står på toppen. En historie er delt opp i flere mindre oppgaver.
 
@@ -174,9 +178,7 @@ Scrum-møtet skal være kort, med fokus på å få hjelp om man har noen utfordr
 I tillegg til at man kan ha flere branches, vil man trenge godkjenning av andre gruppemedlemmer for å merge en ny branch inn i master. Slik kan man være sikrere på at feil i koden blir plukket opp tidlig. Alle endringer som har blitt gjort på prosjektet blir også lagret, så om noe virkelig går galt er det mulig å gå tilbake til en tidligere versjon og å gjøre ting på nytt.
 
 \bigskip \noindent \textbf{Rammeverk}
-\par Før vi bestemte oss for rammeverk gikk vi over brukerhistoriene vi hadde fått for å finne ut hva slags produkt som best ville passet for kunden. Etter å ha vurdert både desktopprogram i JavaFX og en mobilapp, kom vi frem til at en ren nettside var det beste valget. Hovedgrunnen til dette var at et desktopprogram er mer knotete å lage, samt at det er mindre brukervennlig, spesielt for demografien sluttebrukerne befinner seg i. Ikke bare må det være kompatibelt med operativsystemet til sluttbrukeren, men også lite flyttbart. En mobilapp virket mer aktuelt her siden de fleste studenter bruker mobilen til det meste. Valget av å lage nettside ble derfor gjort både på grunnlag av sluttbruker, fleksibilitet og det at de fungerer både på mobil og desktop.
-
-Gruppen ble enige om å bruke Django som rammeverk for prosjektet da noen av oss hadde erfaring med django fra før av og at det virket som det beste valget for denne type oppgave. Ikke bare kunne det meste av databaseprogrammeringen overlates til django, men de fleste på gruppen hadde erfaring med Python fra før av, så selv om strukturen var ukjent ville det ikke ta mange ukene før gruppemedlemmene kunne bruke det helt fint uten veiledning.
+\par Gruppen ble enige om å bruke Django som rammeverk for prosjektet da noen av oss hadde erfaring med django fra før av og at det virket som det beste valget for denne type oppgave. Ikke bare kunne det meste av databaseprogrammeringen overlates til django, men de fleste på gruppen hadde erfaring med Python fra før av, så selv om strukturen var ukjent ville det ikke ta mange ukene før gruppemedlemmene kunne bruke det helt fint uten veiledning.
 
 \bigskip \noindent \textbf{Kort om django}
 \par Django er et webrammeverk som er skrevet i Python, og valget falt på dette fremfor en del andre webrammeverk, for eksempel Ruby on Rails, da alle i gruppa hadde erfaring med Python fra før av. En del av prosjektet er selvfølgelig å tilegne seg ny kunnskap for å løse ukjente oppgaver, og selv om de fleste kunne Python, var oppsettet til Django, og hvordan de ulike delene av rammeverket kommuniserer med hverandre helt ukjent.
@@ -191,10 +193,28 @@ Siden rammeverket er bygget lagvis på denne måten vil ikke databasen og templa
 \par Etter at man har forstått hvordan komponentene kommuniserer med hverandre og hvordan de forskjellige pythondokumentene fungerer i forhold til hverandre, er det veldig lett å holde oversikt over hvilken del av prosjektet man jobber med og det blir mye lettere å oppdage hvor man har gjort feil om det skulle skje.
 
 	\subsection{Scrum i praksis}
+	Skriv innledning her
+	
+	
 	\subsubsection{Sprint}
+	Gruppen bestemte seg for at 2 uker lange sprinter ville være praktisk i forhold til at da kunne vi ha annenhver uke med møte med veileder for prosjektet i midten av sprinten, og møte med produkteier mellom sprintene. Korte sprinter ville også gjøre det mulig for oss å se hvordan vi ligger an tidsmessig, og få tilbakemelding fra produkteier om vi er på rett spor. Det vil alltid være mulig å justere arbeidsmetoder osv. i løpet av en sprint, men når man er ferdig med en sprint er det naturlig å ta en retrospektiv og gjøre de store endringene til begynnelsen av en ny sprint. I slutten av hver sprint var planen å teste funksjonene som hadde blitt implementert siden siste sprint med produkteier i form av en brukbarhetstest med scenario-tester.
+
+    To uker lange sprinter var også fornuftig i forhold til at vi i prosjektperioden ville få til 4 sprinter, hvor den siste sprinten skulle avsluttes 4. november. Ettersom innlevering av rapport hadde frist 12. november ville vi ha mulighet etter siste sprint til å jobbe med ferdigstilling av rapporten. 
+
+    For å estimere arbeidskapasitet til hver sprint delte vi opp de 10 timene vi planla å jobbe hver uke, i totimers-økter. Denne enheten var også den vi ville bruke når vi skulle estimere hvor mange storypoints en brukerhistorie krevde - 1 økt = 1 storypoint. I løpet av en uke ville en person ha 5 økter: mandag: 1, torsdag 2, fredag: 2. Ettersom vi var en gruppe på 9 personer ville vi ha sprinter med 9 (personer) x 5 (økter pr uke) x 2 (uker) = 90 økter pr. sprint. Vi anslo at av 90 teoretiske økter i løpet av en sprint ville ca. 50 økter bli brukt på brukerhistorier. Tallet er lavere på grunn av at noen økter går til møter i gruppa eller med produkteier, mens andre går til rapportskriving, oppsett av utviklermiljø, tid til å sette seg inn i valgte rammeverk eller forbereding til demonstrasjoner og tester. Vi skjønte at mye av tiden på begynnelsen av vår første sprint kom til å gå til planlegging av prosjektet og sette opp utviklermiljø, så vi anslo at produktive økter kom til å være på ca. 25 økter. Sprint 2,3 og 4 anslo vi til 50 arbeidsøkter, fordi vi antok at vi da kom til å være satt opp med prosjektet, kommet inn i bruk av Scrum og klare til å bruke mer tid på utvikling, og mindre tid på administrativt arbeid.
+
 	\subsubsection{Brukerhistorier}
-	\subsubsection{Task-board}
-	\subsubsection{Retrospektiv}
+	Produkteier rangerte brukerhistoriene og ga de lav, høy eller vanlig proritet. Deretter måtte vi rangere disse historiene igjen, for å finne hvilke vi skulle implementere først av de med høyest prioritet. Noen historier så ut til å være avhengige av at andre var ferdige, og måtte nødvendigvis havne i tilsvarende rekkefølge. På grunn av estimater på noen historier måtte vi også gjøre en brukerhistorie med lavere prioritet før en med høyere prioritet. Vi så at i løpet av Sprint 1 hadde vi plass til en brukerhistorie med lavt estimat til, så vi overførte en brukerhistorie fra Sprint 2 til Sprint 1, men denne brukerhistorien hadde lavere prioritet, men var den eneste vi hadde tid til å flytte over til gjeldende sprint. 
+
+    Når vi skulle estimere hvor mange arbeidsøkter en brukerhistorie kom til å ta, brukte vi planning poker. Planning poker utføres ved at hver gruppemedlem får en kortstokk med 13 kort, med verdier som 0, ½, 1, 2, 3, 5, 8, 13, 20, 40, 100, ?, “Pause”. Så velges en brukerhistorie og alle skal individuelt velge ett av kortene som representerer estimert tid for å løse brukerhistorien. Har man bestemt seg for et kort skal den legges på bordet slik at estimatet er skjult. Når alle har et kort liggende foran seg er det på tide å snu dem. Dersom det oppsto store avvik i estimert tid skal man diskutere hvorfor estimatene blir så forskjellige. Deretter skal brukerhistorien estimeres igjen for å se om gruppen blir mer enige om estimatene.
+
+    Det viste seg å være nyttig. Vi fikk da avdekket at det var forskjellige oppfatninger i gruppa av hva slags tekniske implikasjoner historien innebar. Når en historie ga vidt forskjellige verdier, så kunne de som mente at historien trengte få økter få si hvorfor de mente den ikke trengte så mange og motsatt med de som mente historien trengte mange. Allerede da kom det opp mange gode forslag på hvordan man kan løse ting. Noen i gruppa visste allerede litt om hva slags muligheter vårt valgte rammeverk ga, og hadde allerede ideer på hvordan spesifikke ting kunne løses. Når vi tok en ny runde planning poker på den samme brukerhistorien fikk vi likere resultat og kunne fastsette antall økter på en brukerhistorie. 
+
+	
+	
+	
+	\subsubsection{Vårt Task-board}
+	\subsubsection{Våre Retrospektiver}
 	
 \bigskip \noindent \textbf{Retrospektiv Sprint 1}
 \par Etter den første sprinten hadde vi satt opp et retrospektivt møte dagen etter vi var ferdig med sprinten. Da satt hele gruppen seg ned og diskuterte hvordan det hadde gått. Alle fikk hver sin tur til å si: “Hva som gikk bra”, “Hva som gikk dårlig” og “Hva vi kan forbedre” (se vedlagt møtereferat: “Retrospektiv Sprint 1”).
@@ -338,6 +358,8 @@ Burndowncharten viser hvordan progresjonen for oppgavene var i denne sprinten (s
 	
 	\section{Produkt}
 	Det ferdig produktet er en nettside som utfører alle oppgaver beskrevet av kunden. Nettsiden fungerer som en vanlig klubbside og kan brukes av alle som går til nettadressen vi har laget.
+	
+	Før vi bestemte oss for hvilken løsning vi skulle velge for produktet, gikk vi over brukerhistoriene vi hadde fått for å finne ut hva som ville passet best for kunden. Etter å ha vurdert både desktop-program i JavaFX og en mobilapp, valgte vi å gå for en nettside. Hovedgrunnen til dette var at et desktopprogram er mer knotete å lage, samt at det er mindre brukervennlig, spesielt for demografien sluttebrukerne befinner seg i. Ikke bare må det være kompatibelt med operativsystemet til sluttbrukeren, men også lite flyttbart. En mobilapp virket mer aktuelt her siden de fleste studenter bruker mobilen til det meste. Valget av å lage nettside ble derfor gjort både på grunnlag av sluttbruker, fleksibilitet og det at de fungerer både på mobil og desktop.
 	
 	\subsection{Brukermanual}
 	Se vedlegg for brukermanual til produktet:
