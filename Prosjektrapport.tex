@@ -191,7 +191,7 @@ I tillegg til at man kan ha flere branches, vil man trenge godkjenning av andre 
 \bigskip \noindent \textbf{Kort om django}
 \par Django er et webrammeverk som er skrevet i Python, og valget falt på dette fremfor en del andre webrammeverk, for eksempel Ruby on Rails, da alle i gruppen hadde erfaring med Python fra før av. En del av prosjektet er selvfølgelig å tilegne seg ny kunnskap for å løse ukjente oppgaver, og selv om de fleste kunne Python, var oppsettet til Django, og hvordan de ulike delene av rammeverket kommuniserer med hverandre helt ukjent.
 
-I Django lager man en ny app for hver funksjon man vil at et program eller webområde skal ha. Alle komponentene til denne appen ligger i sin egen mappe slik at det som er spesifikt for appen blir lett å holde kontroll på. Vi har i tillegg en main-mappe som gjør det lettere å knytte disse sammen til et helhetlig produkt. Hver app består av tre hovedkomponenter, model.py, views.py og templates. i tillegg har man en adminfil og en egen fil, urls.py, til å definere hvilke linker som peker til hvilket view.
+I Django lager man en ny app for hver funksjon man vil at et program eller webområde skal ha. Alle komponentene til denne appen ligger i sin egen mappe slik at det som er spesifikt for appen blir lett å holde kontroll på. Man har i tillegg en main-mappe som gjør det lettere å knytte disse sammen til et helhetlig produkt. Hver app består av tre hovedkomponenter, model.py, views.py og templates. I tillegg har man en adminfil og en egen fil, urls.py, til å definere hvilke linker som peker til hvilket view.
 
 I model.py definerer man modellene til databasen ved hjelp av Python. Man slipper både å skrive SQL-kode og det er enkelt å gjøre en kjapp endring på databasen, da django ordner det for en. Etter å ha definert feltene vil man hente dem ut via views.py, denne filen fungere både som en controller som definerer hva man kan gjøre med informasjonen, samt delvis som et view som gir brukeren muligheten til å se og å modifisere informasjonen. Templates er det siste, og øverste, laget i appen og er skrevet i HTML. Det definerer hvordan siden skal vises i nettleseren. Urls.py definere hvilke linker som er koblet til hvilket view og admin.py definere felter i klasser i adminpanelet og hvilke data som skal hentes ut fra databasen.
 
@@ -363,18 +363,11 @@ Brenndiagrammet viser hvordan progresjonen for oppgavene var i denne sprinten (s
 	Tidlig i prosjektet bestemte gruppen seg for at det var en god ide å skrive en risikoanalyse for hvilke faktorer som kunne hindre fremgangen i gruppen. Alle risikofaktorene er tilgjengelig i tabellform under vedlegg “risikoanalyse”. En viktig fordel for gruppen var at den bestod av mange gruppemedlemmer, så dermed kunne gruppen ta ansvar for å sette seg inn i og utføre arbeidsoppgaver ved fravær. Dette utspilte seg positivt, da flere fikk satt seg inn i andre deler av prosjektet.
 	
 	\section{Produkt}
-	Før vi bestemte oss for hvilken løsning vi skulle velge for produktet, gikk vi over brukerhistoriene vi hadde fått for å vurdere hva som ville passe best for kunden. Etter å ha vurdert både desktop-program i JavaFX og en mobilapp, valgte vi å gå for en nettside. Hovedgrunnen er at en nettside er lett tilgjengelig på både mobil og datamaskin og krever ingen installering for brukeren sin del.
+	Før vi bestemte oss for hvilken løsning vi skulle velge for produktet, gikk vi over brukerhistoriene vi hadde fått for å vurdere hva som ville passe best for kunden. Etter å ha vurdert både desktop-program i JavaFX og en mobilapp, valgte vi å gå for en nettside. Hovedgrunnen er at en nettside er lett tilgjengelig på både mobil og datamaskin og krever ingen installering for brukeren sin del. Gruppen valgte å bruke webrammeverket Django som utviklingsplattform. Se vedlegg "Django" for beskrivelse av hvordan komponentene i Django fungerer.
 	
-	I vår implementasjon rapporterer brukere status på koiene ved å fylle ut forskjellige skjema og sende de inn. Dette innebærer vedstatus, vedlikeholdsbehov, forslag til tekniske utbedringer og reparasjoner for hver eneste koie. 
+	I vår implementasjon rapporterer koiebrukere status på koiene ved å fylle ut forskjellige skjemaer og sende de inn. Dette innebærer vedstatus, vedlikeholdsbehov, forslag til tekniske utbedringer og reparasjoner for hver eneste koie. Brukere må fylle inn eposten sin for å sende en rapport.
 	
-	Medlemmer av Koiestyret har mulighet til å logge seg inn på en adminside som har oversikt alle rapportene. 
-	
-	foregår kommunikasjon mellom administrasjonen og koiebrukerne via epost.
-
-    NTNUI administrasjonen får en bedre oversikt over koiene og
-    
-    om reparasjoner, tekniske utbedringer, vedlikehold og veddugnad basert på vedprognose.
-    
+	Medlemmer av Koiestyret har mulighet til å logge seg inn på en adminside som har oversikt alle rapportene. Denne kan brukes til å blant annet planlegge veddugnader basert på vedprognoser eller reparasjoner. Kommunikasjon fra administrasjonen til koiebrukerne foregår via epost, så hvis Koiestyret vil at 
 	
 	//Referer til brukermanual
 	//Referer til teknisk manual
